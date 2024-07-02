@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace名称空间 -->
+<!-- 用来关联,映射文件(XML)和接口文件,即接口的类路径 -->
+<mapper namespace="com.lyx.mapper.UserMapper">
+
+    <!--
+        select标签,用于执行查询语句
+        id: 是接口中的方法名
+        resultType: 返回的结果类型,是接口对应方法的返回值
+        [现在只写User报错,要写完整类路径]
+         ==========================
+        代码执行时,调用接口方法findUserById时传入的参数,就会赋值给#{}内的id
+        执行完,查询返回结果集会自动封装到resultType指定的对象中
+     -->
+    <select id="findUserById" resultType="com.lyx.model.User">
+        <!-- #{id} 就相当于是之前的预处理的 ?,会自动给此处复制  -->
+        <!-- 其实就是接口方法的参数列表的值,会传给 #{id} -->
+        select * from tb_user where id = #{id}
+    </select>
+</mapper>
