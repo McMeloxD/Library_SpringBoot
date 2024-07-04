@@ -11,7 +11,7 @@ spring:
 mybatis:
   # 扫描映射文件
   mapper-locations: classpath:mapper/*.xml
-  # 配置别名扫描的包
+  # 配置别名扫描的包(配置后，映射文件中的resultType中不需要写包名，直接写类名即可)
   type-aliases-package: com.lyx.model
   configuration:
     # 开启驼峰映射配置

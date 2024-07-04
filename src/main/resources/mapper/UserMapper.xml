@@ -22,7 +22,7 @@
         select * from user where uname = #{uname} and password = #{password}
     </select>
     <!--  注册查询 1  -->
-    <select id="register" resultType="com.lyx.model.User">
+    <select id="findUsername" resultType="com.lyx.model.User">
 
         select * from user where uname = #{uname}
     </select>

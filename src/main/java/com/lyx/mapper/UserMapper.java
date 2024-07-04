@@ -13,7 +13,7 @@ public interface UserMapper {
     //登录
     User login(User user);
     //注册1
-    User register(String uname);
+    User findUsername(String uname);
     //注册2
     int addUser(User user);
 }

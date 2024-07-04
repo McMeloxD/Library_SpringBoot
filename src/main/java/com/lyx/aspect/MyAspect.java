@@ -41,9 +41,9 @@ public class MyAspect {
     //     }
     //     System.out.println("方法执行后：事务提交");
     // }
-
-    @AfterReturning(value ="execution(* com.lyx.service.*.*(..))",returning = "str")
-    public void myAfterReturning(Object str) {
-        System.out.println("后置返回，接受目标方法的返回值为：" + str);
-    }
+    //
+    // @AfterReturning(value ="execution(* com.lyx.service.*.*(..))",returning = "str")
+    // public void myAfterReturning(Object str) {
+    //     System.out.println("后置返回，接受目标方法的返回值为：" + str);
+    // }
 }

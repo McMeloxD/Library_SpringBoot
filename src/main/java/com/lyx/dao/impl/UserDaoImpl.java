@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
     //注册1
     @Override
     public User register(String uname){
-        User user = userMapper.register(uname);
+        User user = userMapper.findUsername(uname);
         return user;
     };
 
