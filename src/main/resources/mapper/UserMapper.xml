@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace名称空间 -->
+<!-- 用来关联,映射文件(XML)和接口文件,即接口的类路径 -->
+<mapper namespace="com.lyx.mapper.UserMapper">
+
+    <!--
+        select标签,用于执行查询语句
+        id: 是接口中的方法名
+        resultType: 返回的结果类型,是接口对应方法的返回值
+        [现在只写User报错,要写完整类路径]
+         ==========================
+        代码执行时,调用接口方法findUserById时传入的参数,就会赋值给#{}内的id
+        执行完,查询返回结果集会自动封装到resultType指定的对象中
+     -->
+
+    <!--  登录查询  -->
+    <select id="login" resultType="com.lyx.model.User">
+
+        select * from user where uname = #{uname} and password = #{password}
+    </select>
+    <!--  注册查询 1  -->
+    <select id="register" resultType="com.lyx.model.User">
+
+        select * from user where uname = #{uname}
+    </select>
+    <!--  注册查询 2 -->
+    <insert id="addUser">
+        insert into user(uname,password) values(#{uname},#{password})
+    </insert>
+</mapper>
