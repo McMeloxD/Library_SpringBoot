@@ -19,17 +19,23 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     @Override
-    public User login(String username, String password) {
-        //加密
-        User user = userDao.login(username, SecureUtil.md5(password));
-        return user;
-    }
-
-    @Override
-    public boolean register(User user) {
+    public User login(User user) {
         //加密
         user.setPassword(SecureUtil.md5(user.getPassword()));
-        boolean flag = userDao.register(user);
-        return flag;
+        User user1 = userDao.login(user);
+        return user1;
+    }
+
+    //注册1
+    @Override
+    public User register(String uname){
+    return userDao.register(uname);
+    }
+    //注册2
+    @Override
+    public int addUser(User user){
+        //加密
+        user.setPassword(SecureUtil.md5(user.getPassword()));
+        return userDao.addUser(user);
     }
 }

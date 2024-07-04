@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserDao {
-    User login(String username, String password);
-    boolean register(User user);
+    User login(User user);
+    //注册1
+    User register(String uname);
+    //注册2
+    int addUser(User user);
 }

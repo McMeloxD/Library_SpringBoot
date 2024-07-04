@@ -10,6 +10,9 @@ import com.lyx.model.User;
  * @desc
  */
 public interface UserService {
-    User login(String username, String password);
-    boolean register(User user);
+    User login(User user);
+    //注册查询是否存在用户
+    User register(String uname);
+    //注册2
+    int addUser(User user);
 }

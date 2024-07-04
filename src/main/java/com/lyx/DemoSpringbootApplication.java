@@ -1,11 +1,13 @@
 package com.lyx;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
 
 @SpringBootApplication
+@MapperScan("com.lyx.mapper") //扫码mapper接口，创建代理对象
 public class DemoSpringbootApplication {
 
     public static void main(String[] args) {
