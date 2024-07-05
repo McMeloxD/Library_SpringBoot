@@ -84,6 +84,8 @@
                 console.log(bookresult)
                 if (bookresult.code == 20000) {
                     alert(bookresult.msg);
+                    var json = JSON.stringify(bookresult.data);
+                    sessionStorage.setItem("BookList",json)
                     location.assign("BookList.html");
                 } else if (bookresult.code == 40000) {
                     alert(bookresult.msg);

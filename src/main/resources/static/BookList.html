@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书列表</title>
+    <script src="./js/jquery-2.1.0.js"></script>
+    <style>
+        body {
+            background: url("./img/bg6.png") no-repeat;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2 style="color: white">图书列表</h2>
+<table id="Booktable">
+    <thead>
+    <tr>
+        <th>书名</th>
+        <th>价格</th>
+        <th>出版社</th>
+        <th>作者</th>
+        <th>可借阅数量</th>
+    </tr>
+    </thead>
+    <tbody id="bookList">
+    <!--  由addbook传来数据  -->
+    </tbody>
+</table>
+<button type="button" onclick="btn()">返回</button>
+
+<script>
+    <!--页面加载事件读取session -->
+
+    $(function(){
+//     【出现问题】
+//         在页面中经常使用隐藏域暂存一些数据，但是在存放 json 对象时，会出现将 json 对象存放到隐藏域中，但是取出后输出显示为 [Object object]，而且无法通过“ .属性名 ”的方式获取属性。
+//     【解决方法】
+//  先通过 var jsonStri = JSON.stringify( JSON 对象 ) 将 JSON 对象转换为 String 字符串再传
+//         将取出的值转化为 JSON 对象：var jsonObj = JSON.parse( JSON 对象 ),此时获取的值即为 JSON 对象，可以正常操作了。
+
+        var bookList = JSON.parse(sessionStorage.getItem("BookList"));
+        console.log(bookList);
+        var tbody = document.getElementById("bookList");
+        bookList.forEach(function (books) {
+            var row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${books.bname}</td>
+            <td>${books.price}</td>
+            <td>${books.press}</td>
+            <td>${books.author}</td>
+            <td>${books.number}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    });
+
+
+    <!-- 跳转首页 -->
+    function btn() {
+        //清理下数据
+        sessionStorage.clear();
+        location.assign("menu.html");
+    }
+</script>
+</body>
+</html>
