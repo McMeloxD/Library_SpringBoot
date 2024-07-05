@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h2>演示: 接收请求路径</h2>
+<p>this is a html page</p>
+
+<a href="/req2">发送get请求</a> <br>
+<form action="/req1" method="post">
+    <button>发送post请求</button>
+</form>
+<h2>演示: 接收简单常见类型的数据</h2>
+<form action="/receiveSimple">
+    用户名<input type="text" name="username"><br>
+    年龄<input type="text" name="age"><br>
+    分数<input type="text" name="score"><br>
+    生日<input type="date" name="birthday"><br>
+    <button>提交</button>
+</form>
+<h2>演示: 接收对象类型的数据</h2>
+<form action="/receiveObject">
+    id<input type="text" name="id"><br>
+    用户名<input type="text" name="username"><br>
+    密码<input type="password" name="password"><br>
+    年龄<input type="text" name="age"><br>
+    分数<input type="text" name="score"><br>
+    生日<input type="date" name="birthday"><br>
+    <button>提交</button>
+</form>
+<h2>演示: 接收数组类型的数据</h2>
+<form action="/receiveArray">
+    id<input type="checkbox" name="ids" value="1">1<br>
+    id<input type="checkbox" name="ids" value="2">2<br>
+    id<input type="checkbox" name="ids" value="3">3<br>
+    id<input type="checkbox" name="ids" value="4">4<br>
+    <button>提交</button>
+</form>
+<h2>演示: 接收List类型的数据</h2>
+<form action="/receiveList">
+    id<input type="checkbox" name="ids" value="1">1<br>
+    id<input type="checkbox" name="ids" value="2">2<br>
+    id<input type="checkbox" name="ids" value="3">3<br>
+    id<input type="checkbox" name="ids" value="4">4<br>
+    <button>提交</button>
+</form>
+<h2>演示: 接收Map类型的数据</h2>
+<form action="/receiveMap">
+    用户名<input type="text" name="username"><br>
+    年龄<input type="text" name="age"><br>
+    分数<input type="text" name="score"><br>
+    生日<input type="date" name="birthday"><br>
+    <button>提交</button>
+</form>
+<h2>演示: 接收路径中的数据</h2>
+<a href="/blog/weixin_39641494/article/details/131625212">查看文章详情</a>
+</body>
+</html>

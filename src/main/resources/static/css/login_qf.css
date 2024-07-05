@@ -1,0 +1,98 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background: url(../static/bg2.png) repeat top;
+    /* background-size指定背景图像的大小 */
+    /* 你指定的大小是相对于父元素的宽度和高度的百分比的大小。 */
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+
+    .login-bg {
+        width: 855px;
+        height: 508px;
+        background: url("../static/wj.png") #fff no-repeat;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /* contain会保持图像的纵横比并将图像缩放成完全覆盖背景定位区域的最大大小。
+        这个属性值也是可以保证图片的宽高比不会被改变，并保证图片一定会完整的显示在背景中，
+        但是如果背景和图片的宽高比不一致则一定会有导致图片repeat重复的平铺在背景中，可以通过设置background-repeat: no-repeat;保证不平铺 */
+        background-size: contain;
+        margin: -254px 0 0 -427px;
+        /* 圆角 */
+        border-radius: 12px;
+    }
+
+    .login-r {
+        width: 447px;
+        float: right;
+    }
+
+    .login-bg .login-r h2 {
+        margin: 61px auto 0;
+        text-align: center;
+    }
+
+    .login-bg .login-r .item .ktimg {
+        position: absolute;
+        height: 16px;
+        margin: 15px;
+    }
+
+
+    .login-bg .login-r .item {
+        width: 336px;
+        margin: 33px auto 0;
+
+    }
+
+    .login-bg .login-r .item .login-input {
+        height: 42px;
+        width: 336px;
+    }
+
+    .login-bg .login-r .item .login-input input {
+        height: 22px;
+        width: 306px;
+        padding: 10px 0 10px 42px;
+    }
+
+
+    .login-bg .login-r .item .login-yz {
+        height: 42px;
+        width: 336px;
+    }
+
+    .login-bg .login-r .item .login-yz input {
+        height: 22px;
+        width: 170px;
+        padding: 10px 0 10px 42px;
+        float: left;
+    }
+
+    .foget {
+        float: right;
+        color: #2890ff;
+        font-size: 13px;
+    }
+
+    .yhm {
+        font-size: 13px;
+    }
+
+    button {
+        width: 320px;
+        height: 42px;
+        margin-left: 10px;
+    }
+
+    .item-jw {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+
+}
