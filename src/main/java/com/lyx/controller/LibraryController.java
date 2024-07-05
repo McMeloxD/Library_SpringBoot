@@ -41,4 +41,11 @@ public class LibraryController {
             } else return new R(40000, "添加失败~", null);
         } else return new R(50000, "图书馆已经有这本书了呢~", null);
     }
+
+    @GetMapping("/delBook")
+    public R delBook(String bname) {
+        System.out.println(bname);
+        //先判断是否有人正在借阅这个书
+    return null;
+    }
 }

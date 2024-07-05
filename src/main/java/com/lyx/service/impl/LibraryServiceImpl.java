@@ -2,6 +2,7 @@ package com.lyx.service.impl;
 
 
 import com.lyx.dao.LibraryDao;
+import com.lyx.dao.impl.LibraryDaoImpl;
 import com.lyx.service.LibraryService;
 import com.lyx.model.Book;
 import com.lyx.model.BorrowInfo;
@@ -23,6 +24,8 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Autowired
     private LibraryDao libraryDao;
+    @Autowired
+    private LibraryDaoImpl libraryDaoImpl;
 
     @Override
     public List<BorrowInfo> borrowInfo(User user) {
@@ -33,5 +36,10 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public int addBook(Book book) {
         return libraryDao.addBook(book);
+    }
+
+    @Override
+    public int delBook(String bname) {
+        return libraryDao.delBook(bname);
     }
 }

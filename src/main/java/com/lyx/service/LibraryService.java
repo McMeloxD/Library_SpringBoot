@@ -16,4 +16,5 @@ import java.util.List;
 public interface LibraryService {
     List<BorrowInfo> borrowInfo(User user);
     int addBook(Book book);
+    int delBook(String bname);
 }

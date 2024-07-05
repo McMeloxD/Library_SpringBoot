@@ -11,6 +11,11 @@
         select * from book where bname = #{bname}
     </select>
 
+    <!--  删除一个图书  -->
+    <delete id="delBook">
+        delete from book where bname = #{bname}
+    </delete>
+
     <!--  查询全部图书  -->
     <select id="getAllBook" resultType="com.lyx.model.Book">
         select * from book

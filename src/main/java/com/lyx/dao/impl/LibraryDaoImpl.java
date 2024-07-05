@@ -36,4 +36,9 @@ public class LibraryDaoImpl implements LibraryDao {
     public int addBook(Book book) {
         return bookMapper.addBook(book);
     }
+
+    @Override
+    public int delBook(String bname) {
+        return bookMapper.delBook(bname);
+    }
 }
