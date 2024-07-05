@@ -1,6 +1,7 @@
 package com.lyx.mapper;
 
 import com.lyx.model.User;
+import com.lyx.model.UserVO;
 
 /**
  * --- Be Humble and Hungry ---
@@ -16,4 +17,6 @@ public interface UserMapper {
     User findUsername(String uname);
     //注册2
     int addUser(User user);
+    //查询所有借阅信息
+    UserVO findUserWithBorrowById(int id);
 }

@@ -7,12 +7,14 @@
     <script src="./js/jquery-2.1.0.js"></script>
     <style>
         body {
+            background: url("/img/bg1.png") no-repeat;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             text-align: center;
             margin: 0;
             padding: 0;
         }
+
         .login-container {
             margin-top: 100px;
             width: 300px;
@@ -21,29 +23,35 @@
             border-radius: 5px;
             padding: 20px;
             display: inline-block;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .login-container h2 {
             margin-bottom: 20px;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         .form-group label {
             display: block;
             text-align: left;
             margin-bottom: 5px;
         }
+
         .form-group input {
             width: calc(100% - 20px);
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 3px;
         }
+
         .form-group input:focus {
             outline: none;
             border-color: #66afe9;
         }
+
         .form-group button {
             width: 100%;
             padding: 10px;
@@ -53,6 +61,7 @@
             cursor: pointer;
             border-radius: 3px;
         }
+
         .form-group button:hover {
             background-color: #45a049;
         }
@@ -61,25 +70,28 @@
 <body>
 <div class="login-container">
     <h2>用户注册</h2>
-        <div class="form-group">
-            <label for="username">用户名:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password">密码:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-            <label for="password">再次输入密码:</label>
-            <input type="password" id="password2" name="password2" required>
-        </div>
-        <div class="form-group">
-            <button type="submit" onclick="validateForm()">注册</button>
-        </div>
+    <div class="form-group">
+        <label for="username">用户名:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">密码:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div class="form-group">
+        <label for="password">再次输入密码:</label>
+        <input type="password" id="password2" name="password2" required>
+    </div>
+    <div class="form-group">
+        <button type="submit" onclick="goReg()">注册</button>
+    </div>
+    <div class="register-link">
+        <p>已有账号？<a href="index.html">点击这里登录</a></p>
+    </div>
 </div>
 
 <script>
-    function validateForm() {
+    function goReg() {
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         var password2 = document.getElementById("password2").value;
@@ -90,7 +102,7 @@
         if (username.trim() === "" || password.trim() === "") {
             alert("用户名和密码不能为空");
             return false;
-        }else if (password != password2) {
+        } else if (password != password2) {
             alert("两次密码输入不一致");
             return false;
         }
@@ -103,13 +115,13 @@
                 "password": password
             },
             dataType: "JSON",
-            success: function(result) {
-                if (result.code == 20000){
+            success: function (result) {
+                if (result.code == 20000) {
                     alert(result.msg);
                     location.assign("index.html")
-                }else if(result.code == 40000){
+                } else if (result.code == 40000) {
                     alert(result.msg);
-                }else {
+                } else {
                     alert(result.msg);
                     location.assign("index.html");
                 }

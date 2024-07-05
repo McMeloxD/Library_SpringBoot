@@ -124,6 +124,7 @@
             success: function(data) {
                 if (data.code == 20000){
                     alert(data.msg);
+                    sessionStorage.setItem('username', data.data);
                     location.assign("menu.html")
                 }else if(data.code == 40000){
                     alert(data.msg);

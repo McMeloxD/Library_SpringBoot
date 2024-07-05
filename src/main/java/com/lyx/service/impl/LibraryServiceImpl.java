@@ -26,14 +26,12 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public List<BorrowInfo> borrowInfo(User user) {
-        System.out.println("业务层执行");
         List<BorrowInfo> infos = libraryDao.borrowInfo(user);
         return infos;
     }
 
     @Override
-    public List<Book> addBook(Book book) {
-        List<Book> books = libraryDao.addBook(book);
-        return books;
+    public int addBook(Book book) {
+        return libraryDao.addBook(book);
     }
 }

@@ -1,9 +1,12 @@
 package com.lyx.dao.impl;
 
 import com.lyx.dao.LibraryDao;
+import com.lyx.mapper.BookMapper;
+import com.lyx.mapper.UserMapper;
 import com.lyx.model.Book;
 import com.lyx.model.BorrowInfo;
 import com.lyx.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -20,16 +23,17 @@ import java.util.List;
  */
 @Repository
 public class LibraryDaoImpl implements LibraryDao {
+    @Autowired
+    private BookMapper bookMapper;
 
 
     @Override
     public List<BorrowInfo> borrowInfo(User user) {
-        System.out.println("持久层执行");
-        return Collections.emptyList();
+        return null;
     }
 
     @Override
-    public List<Book> addBook(Book book) {
-        return Collections.emptyList();
+    public int addBook(Book book) {
+        return bookMapper.addBook(book);
     }
 }

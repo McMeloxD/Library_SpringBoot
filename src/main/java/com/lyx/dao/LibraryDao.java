@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface LibraryDao {
     List<BorrowInfo> borrowInfo(User user);
-    List<Book> addBook(Book book);
+    int addBook(Book book);
 
 }

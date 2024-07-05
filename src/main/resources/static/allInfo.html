@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书借阅记录</title>
+    <style>
+        body {
+            background: url("./img/bg5.png") no-repeat;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2>图书借阅记录</h2>
+<table>
+    <thead>
+    <tr>
+        <th>书名</th>
+        <th>作者</th>
+        <th>价格</th>
+        <th>借阅时间</th>
+        <th>是否归还</th>
+    </tr>
+    </thead>
+    <tbody id="bookList">
+    <!-- 这里用JavaScript动态生成表格内容 -->
+    </tbody>
+</table>
+<button type="submit" onclick="btn1()">查询</button>
+<button type="button" onclick="btn2()">返回</button>
+
+<script>
+    <!--添加-->
+    function btn1() {
+        $.ajax({
+            type: "GET",
+            url: "/allInfo",
+            data: {},
+            dataType: "JSON",
+            success: function (bookresult) {
+                console.log(bookresult)
+                if (bookresult.code == 20000) {
+                    alert(bookresult.msg);
+                    // 获取返回的集合迭代
+                    let arr = bookresult.data;
+                    var tbody = document.getElementById("bookList");
+                    arr.forEach(function (borws) {
+                        var row = document.createElement("tr");
+                        row.innerHTML = `
+                           <td>${borws.bname}</td>
+                           <td>${borws.author}</td>
+                           <td>${borws.price}</td>
+                           <td>${borws.btime}</td>
+                           <td>${borws.isReturn}</td>
+                            `;
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    alert(bookresult.msg);
+                }
+            }
+        });
+    }
+
+    function btn2() {
+        location.assign("menu.html");
+    }
+</script>
+</body>
+</html>

@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface LibraryService {
     List<BorrowInfo> borrowInfo(User user);
-    List<Book> addBook(Book book);
+    int addBook(Book book);
 }

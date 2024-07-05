@@ -1,8 +1,6 @@
 package com.lyx.model;
 
 
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
 /**
@@ -12,7 +10,6 @@ import java.util.Date;
  * @date 2024/6/22
  * @desc
  */
-@Component
 public class BorrowInfo {
     private int bid;
     private String bname;
@@ -24,7 +21,7 @@ public class BorrowInfo {
     public BorrowInfo() {
     }
 
-    public BorrowInfo(int bid, String bname, String author,float price,Date ptime,String isReturn) {
+    public BorrowInfo(int bid, String bname, String author, float price, Date ptime, String isReturn) {
         this.author = author;
         this.bid = bid;
         this.bname = bname;

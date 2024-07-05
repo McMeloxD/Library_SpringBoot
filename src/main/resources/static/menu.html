@@ -33,17 +33,28 @@
 <div id="app">
     <h3>图书借阅系统</h3>
     <img src="./img/wenjie.png" style="border-radius: 50%;width: 80px;height: 80px">
-    <p>当前登录用户: <span id="username" class="name" th:text="${uname}"></span>
+    <p>当前登录用户: <span id="username"></span>
     </p>
     <br>
-    <p><a href="addBook.jsp">*** 1.添加图书 ***</a></p>
+    <p><a href="addBook.html">*** 1.添加图书 ***</a></p>
     <p><a href="">*** 2.删除图书 ***</a></p>
     <p><a href="">*** 3.搜索图书 ***</a></p>
-    <p><a href="allInfo.jsp">*** 4.产看已借阅图书信息 ***</a></p>
+    <p><a href="allInfo.html">*** 4.产看已借阅图书信息 ***</a></p>
     <p><a href="">*** 5.查看未归还图书信息 ***</a></p>
     <p><a href="">*** 6.借书 ***</a></p>
     <p><a href="">*** 7.还书 ***</a></p>
-    <p><a href="/logout">*** 8.退出登录 ***</a></p>
+    <p><a href="javascript:void(0);" id="tc">*** 8.退出登录 ***</a></p>
 </div>
+<script>
+    <!-- 读取名字 -->
+    $("#username").text(sessionStorage.getItem("username"));
+
+    //如果点击退出登录 直接在前端清空sessionStorage的内容，并且跳转登录页面
+    $("#tc").click(()=>
+    {
+        sessionStorage.clear();
+        location.assign("index.html");
+    })
+</script>
 </body>
 </html>

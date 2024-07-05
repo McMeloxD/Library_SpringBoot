@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace名称空间 -->
+<!-- 用来关联,映射文件(XML)和接口文件,即接口的类路径 -->
+<mapper namespace="com.lyx.mapper.BookMapper">
+
+    <!--  查询一个图书  -->
+    <select id="getBookByName" resultType="com.lyx.model.Book">
+        select * from book where bname = #{bname}
+    </select>
+
+    <!--  查询全部图书  -->
+    <select id="getAllBook" resultType="com.lyx.model.Book">
+        select * from book
+    </select>
+
+    <!-- 添加图书 -->
+    <insert id="addBook">
+        insert into book(bname,price,press,author,number) values(#{bname},#{price},#{press},#{author},#{number})
+    </insert>
+
+    <!--  查询所有借阅信息  -->
+
+</mapper>

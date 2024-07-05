@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
@@ -36,8 +35,7 @@ public class UserController {
             //存在就执行登录
             User user1 = userService.login(new User(uname, password));
             if (user1 != null){
-                session.setAttribute("uname", user1.getUname());
-                return new R(20000,"登陆成功",null);
+                return new R(20000,"登陆成功",uname);
             }else return new R(40000,"账号或密码错误！",null);
         }else return new R(50000,"该用户不存在请注册！",null);
 
@@ -59,9 +57,4 @@ public class UserController {
         }
     }
 
-    @GetMapping("logout")
-    public String logout(HttpSession session){
-        session.invalidate();//销毁session
-        return "redirect:/index.html";
-    }
 }
