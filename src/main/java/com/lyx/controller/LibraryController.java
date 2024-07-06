@@ -63,7 +63,7 @@ public class LibraryController {
     @GetMapping("/findBook")
     public R findBook(String bname) {
         List<Book> books = libraryService.getBookByText(bname);
-        if (books != null) {
+        if (!books.isEmpty()) {
             return new R(20000,"查询成功！",books);
         }else return new R(40000,"没有这本书呢~",null);
     }

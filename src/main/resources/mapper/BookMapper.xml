@@ -18,7 +18,7 @@
 
     <!--  添加借阅信息  -->
     <insert id="addBrInfo" >
-        insert into borrow(uid,bid,btime) values(#{uid},#{bid},#{btime})
+        insert into borrow(uid,bid,btime) values(#{param1},#{param2},#{param3})
     </insert>
 
     <!--  模糊查询图书  -->

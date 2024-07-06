@@ -17,8 +17,6 @@ public interface BookMapper {
     //添加图书
     int addBook(Book book);
 
-    //查询图书id
-    Book findBookId(Book book);
 
     //删除图书
     int delBook(String bname);
