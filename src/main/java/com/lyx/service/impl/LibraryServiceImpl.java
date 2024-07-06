@@ -42,4 +42,15 @@ public class LibraryServiceImpl implements LibraryService {
     public int delBook(String bname) {
         return libraryDao.delBook(bname);
     }
+
+    @Override
+    public List<Book> getBookByText(String bname) {
+        //加个通配符
+        return libraryDao.getBookByText("%"+bname+"%");
+    }
+
+    @Override
+    public int borrowBook(String bname,int uid,int bid) {
+        return libraryDao.borrowBook(bname,uid,bid);
+    }
 }

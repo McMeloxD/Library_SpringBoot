@@ -17,4 +17,6 @@ public interface LibraryDao {
     List<BorrowInfo> borrowInfo(User user);
     int addBook(Book book);
     int delBook(String bname);
+    List<Book> getBookByText(String bname);
+    int borrowBook(String bname,int uid,int bid);
 }

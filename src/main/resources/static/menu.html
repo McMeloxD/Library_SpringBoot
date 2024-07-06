@@ -37,18 +37,19 @@
     </p>
     <br>
     <p><a href="addBook.html">*** 1.添加图书 ***</a></p>
-    <p><a href="">*** 2.删除图书 ***</a></p>
-    <p><a href="">*** 3.搜索图书 ***</a></p>
+    <p><a href="delBook.html">*** 2.删除图书 ***</a></p>
+    <p><a href="findBook.html">*** 3.搜索图书 ***</a></p>
     <p><a href="allInfo.html">*** 4.产看已借阅图书信息 ***</a></p>
     <p><a href="">*** 5.查看未归还图书信息 ***</a></p>
-    <p><a href="">*** 6.借书 ***</a></p>
+    <p><a href="borrowBook.html">*** 6.借书 ***</a></p>
     <p><a href="">*** 7.还书 ***</a></p>
     <p><a href="javascript:void(0);" id="tc">*** 8.退出登录 ***</a></p>
 </div>
 <script>
     <!-- 读取名字 -->
-    $("#username").text(sessionStorage.getItem("username"));
-
+    var user = JSON.parse(sessionStorage.getItem("user"));
+    $("#username").text(user.uname);
+    console.log(user);
     //如果点击退出登录 直接在前端清空sessionStorage的内容，并且跳转登录页面
     $("#tc").click(()=>
     {

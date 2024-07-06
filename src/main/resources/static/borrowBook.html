@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>借阅图书</title>
+    <script src="./js/jquery-2.1.0.js"></script>
+    <style>
+        body {
+            background: url("./img/bg6.png") no-repeat;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2 style="color: white">图书借阅</h2>
+<table id="Booktable">
+    <thead>
+    <tr>
+        <th>图书ID</th>
+        <th>书名</th>
+        <th>价格</th>
+        <th>出版社</th>
+        <th>作者</th>
+        <th>借阅</th>
+    </tr>
+    </thead>
+    <tbody id="bookList">
+    <!--  由addbook传来数据  -->
+    </tbody>
+</table>
+<button type="button" onclick="btn()">返回</button>
+
+<script>
+
+        $("#btn").click(function() {
+            //获取id
+            var row = $(this).closest("tr");
+            var bid = row.find("td:eq(0)").text();
+            console.log(bid)
+            $.ajax({
+                type: "GET",
+                url: "/borrowBook",
+                data: {
+                    "bname": $("#bname").val(),
+                    "uid": JSON.parse(sessionStorage.getItem("user")).uname,
+                    "bid": bid,
+                },
+                dataType: "JSON",
+                success: function (bookresult) {
+                    if (bookresult.code == 20000) {
+                        alert(bookresult.msg);
+                    } else {
+                        alert(bookresult.msg);
+                    }
+                }
+            });
+        })
+
+    <!--页面加载事件 -->
+    $(function() {
+        //获取图书列表
+        $.ajax({
+            type: "GET",
+            url: "/bookList",
+            data: {},
+            dataType: "JSON",
+            success: function (bookresult) {
+                console.log(bookresult);
+                var bookList = bookresult.data;
+                if (bookresult.code == 20000) {
+                    var tbody = document.getElementById("bookList");
+                    bookList.forEach(function (books) {
+                        var row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td id="bid">${books.bid}</td>
+                            <td>${books.bname}</td>
+                            <td>${books.price}</td>
+                            <td>${books.press}</td>
+                            <td>${books.author}</td>
+                            <td><button type="submit" id="btn">借阅</button></td>
+                    `;
+                        tbody.appendChild(row);
+                    })
+                }
+            }
+        })
+    });
+
+    <!-- 跳转首页 -->
+    function btn() {
+        location.assign("menu.html");
+    }
+</script>
+</body>
+</html>

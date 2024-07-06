@@ -123,8 +123,8 @@
             dataType: "JSON",
             success: function(data) {
                 if (data.code == 20000){
-                    alert(data.msg);
-                    sessionStorage.setItem('username', data.data);
+                    var user = JSON.stringify(data.data)
+                    sessionStorage.setItem('user', user);
                     location.assign("menu.html")
                 }else if(data.code == 40000){
                     alert(data.msg);
@@ -135,7 +135,13 @@
             }
         });
     }
-
+    // 增加按回车也可以登录的功能
+    document.addEventListener("keydown",keydown);
+    function keydown(e){
+        if (e.keyCode == 13){
+            btn();
+        }
+    }
 </script>
 
 </body>

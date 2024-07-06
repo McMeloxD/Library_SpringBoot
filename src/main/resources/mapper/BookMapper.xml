@@ -11,6 +11,21 @@
         select * from book where bname = #{bname}
     </select>
 
+    <!--  借阅更新图书数量  -->
+    <update id="borrowBook" >
+        update book set number = number -1 where number > 0 and bname = #{bname}
+    </update>
+
+    <!--  添加借阅信息  -->
+    <insert id="addBrInfo" >
+        insert into borrow(uid,bid,btime) values(#{uid},#{bid},#{btime})
+    </insert>
+
+    <!--  模糊查询图书  -->
+    <select id="getBookByText" resultType="com.lyx.model.Book">
+        select * from book where bname like #{bname}
+    </select>
+
     <!--  删除一个图书  -->
     <delete id="delBook">
         delete from book where bname = #{bname}
@@ -27,5 +42,8 @@
     </insert>
 
     <!--  查询所有借阅信息  -->
-
+    <!--  查询一本书是否有人正在借阅  -->
+    <select id="getBorrowInfo" resultType="com.lyx.model.Borrow">
+        select br.* from book b,borrow br where b.bid = br.bid and b.bname = #{bname} and rtime is null
+    </select>
 </mapper>
