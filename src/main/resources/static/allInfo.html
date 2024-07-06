@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图书借阅记录</title>
+    <script src="./js/jquery-2.1.0.js"></script>
+    <!--  格式化时间的工具  -->
+    <script src="./js/date_fns.min.js"></script>
     <style>
         body {
             background: url("./img/bg5.png") no-repeat;
@@ -35,7 +38,7 @@
             color: white;
         }
 
-        tr:nth-child(even) {
+        tr {
             background-color: #f2f2f2;
         }
     </style>
@@ -56,43 +59,50 @@
     <!-- 这里用JavaScript动态生成表格内容 -->
     </tbody>
 </table>
-<button type="submit" onclick="btn1()">查询</button>
-<button type="button" onclick="btn2()">返回</button>
+<button type="button" onclick="btn()">返回</button>
 
 <script>
-    <!--添加-->
-    function btn1() {
+    <!--页面加载事件 -->
+    $(function () {
+        //获取图书列表
         $.ajax({
             type: "GET",
             url: "/allInfo",
-            data: {},
+            data: {
+                "uid": JSON.parse(sessionStorage.getItem("user")).uid
+            },
             dataType: "JSON",
             success: function (bookresult) {
-                console.log(bookresult)
+                console.log(bookresult);
+                var bookList = bookresult.data;
                 if (bookresult.code == 20000) {
-                    alert(bookresult.msg);
-                    // 获取返回的集合迭代
-                    let arr = bookresult.data;
                     var tbody = document.getElementById("bookList");
-                    arr.forEach(function (borws) {
+                    let date = new Date();
+                    bookList.forEach(function (infos) {
                         var row = document.createElement("tr");
+                        date = infos.borrow.btime;
                         row.innerHTML = `
-                           <td>${borws.bname}</td>
-                           <td>${borws.author}</td>
-                           <td>${borws.price}</td>
-                           <td>${borws.btime}</td>
-                           <td>${borws.isReturn}</td>
-                            `;
+                            <td>${infos.bname}</td>
+                            <td>${infos.author}</td>
+                            <td>${infos.price}</td>
+                            <!-- 将传来的UTC时间格式化 -->
+                            <td>${dateFns.format(date, "YYYY-MM-DD HH:mm:ss")}</td>
+                            <td>${infos.borrow.rtime == null ? '未归还' : '已归还'}</td>
+                    `;
                         tbody.appendChild(row);
-                    });
-                } else {
-                    alert(bookresult.msg);
+                    })
+                }else {
+                    alert('暂未查询到您有借阅记录呢~');
+                    //跳转菜单
+                    location.assign("menu.html");
                 }
             }
-        });
-    }
+        })
+    });
 
-    function btn2() {
+
+    <!-- 跳转首页 -->
+    function btn() {
         location.assign("menu.html");
     }
 </script>

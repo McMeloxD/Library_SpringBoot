@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>删除图书</title>
+    <!--  第一种删除方法，不过这里比较笨拙，没有体现到ajax的便捷  -->
     <script src="./js/jquery-2.1.0.js"></script>
     <style>
         body {
@@ -59,27 +60,35 @@
 <button type="button" onclick="btn()">返回</button>
 
 <script>
-    <!--添加-->
+    <!--
+    添加-->
     function del() {
-        $.ajax({
-            type: "GET",
-            url: "/delBook",
-            data: {
-                "bname": $("#bname").val(),
-            },
-            dataType: "JSON",
-            success: function (bookresult) {
-                console.log(bookresult)
-                if (bookresult.code == 20000) {
-                    alert(bookresult.msg);
-                    var json = JSON.stringify(bookresult.data);
-                    sessionStorage.setItem("BookList", json)
-                    location.assign("BookList.html");
-                } else {
-                    alert(bookresult.msg);
+        var msg = "您确定要删除吗？";
+        if (confirm(msg) == true) {
+            $.ajax({
+                type: "GET",
+                url: "/delBook",
+                data: {
+                    "bname": $("#bname").val(),
+                },
+                dataType: "JSON",
+                success: function (bookresult) {
+                    console.log(bookresult)
+                    if (bookresult.code == 20000) {
+                        alert(bookresult.msg);
+                        var json = JSON.stringify(bookresult.data);
+                        sessionStorage.setItem("BookList", json)
+                        location.assign("BookList.html");
+                    } else {
+                        alert(bookresult.msg);
+                    }
                 }
-            }
-        });
+            });
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     <!-- 跳转首页 -->

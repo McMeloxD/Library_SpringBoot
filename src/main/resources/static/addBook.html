@@ -87,11 +87,9 @@
                     var json = JSON.stringify(bookresult.data);
                     sessionStorage.setItem("BookList",json)
                     location.assign("BookList.html");
-                } else if (bookresult.code == 40000) {
+                }  else {
                     alert(bookresult.msg);
-                } else {
-                    alert(bookresult.msg);
-                    location.assign("menu.html");
+                    location.assign("BookList.html");
                 }
             }
         });

@@ -3,12 +3,12 @@ package com.lyx.dao.impl;
 import com.lyx.dao.LibraryDao;
 import com.lyx.mapper.BookMapper;
 import com.lyx.model.Book;
-import com.lyx.model.BorrowInfo;
-import com.lyx.model.User;
+import com.lyx.model.Borrow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,12 +22,6 @@ import java.util.List;
 public class LibraryDaoImpl implements LibraryDao {
     @Autowired
     private BookMapper bookMapper;
-
-
-    @Override
-    public List<BorrowInfo> borrowInfo(User user) {
-        return null;
-    }
 
     @Override
     public int addBook(Book book) {
@@ -54,6 +48,23 @@ public class LibraryDaoImpl implements LibraryDao {
             return n2;
         }
         return -1;
+    }
+
+    @Override
+    public int returnBook(int bid) {
+        int n1 = bookMapper.returnBook(bid);
+        //如果还书数量更新成功则修改借阅记录
+        if (n1 > 0) {
+            Timestamp time = new java.sql.Timestamp(new java.util.Date().getTime());
+            int n2 = bookMapper.updateInfo(time,bid);
+            return n2;
+        }
+        return -1;
+    }
+
+    @Override
+    public List<Borrow> getBorrwInfosByUid(int uid) {
+        return bookMapper.getBorrwInfosByUid(uid);
     }
 
 

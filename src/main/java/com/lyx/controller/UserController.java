@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
  * @date 2024/7/2
  * @desc
  */
-@Controller
+@RestController
 public class UserController {
     @Autowired
     private UserService userService;
@@ -27,7 +28,6 @@ public class UserController {
     private UserMapper userMapper;
 
     @PostMapping ("/login")
-    @ResponseBody
     public R login(String uname, String password, HttpSession session){
         //先判断有没有这个用户
         User user = userMapper.findUsername(uname);
@@ -42,7 +42,6 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    @ResponseBody
     public R register(String uname, String password){
         User user = userService.register(uname);
         if (user == null){

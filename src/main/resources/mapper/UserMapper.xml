@@ -31,35 +31,4 @@
         insert into user(uname,password) values(#{uname},#{password})
     </insert>
 
-    <!-- 一对多 查询一个用户下的所有借阅信息 -->
-    <resultMap id="userWithBorrowResultMap" type="UserVO">
-        <!-- 封装User对象 -->
-        <id column="uid" property="uid"/>
-        <result column="uname" property="uname"/>
-        <result column="password" property="password"/>
-        <!-- 一对多关联映射使用collection标签 -->
-        <!-- property是UserVO类中关联的属性 -->
-        <!-- 不是javaType,是ofType,是指定集合中存储的数据类型 -->
-        <collection property="borrowList" ofType="com.lyx.model.Borrow">
-            <id column="brid" property="brid"/>
-            <result column="uid" property="uid"/>
-            <result column="bid" property="bid"/>
-            <result column="btime" property="btime"/>
-            <result column="rtime" property="rtime"/>
-        </collection>
-        <collection property="isReturn" javaType="java.lang.String">
-            <result column="isReturn" property="isReturn"/>
-        </collection>
-    </resultMap>
-
-    <!-- 多表联查,另外的属性不会自动封装,需要使用resultMap -->
-    <select id="findUserWithBorrowById" resultMap="userWithBorrowResultMap">
-        SELECT
-        *
-        FROM
-        tb_user u
-        LEFT JOIN tb_order o ON u.id = o.uid
-        WHERE
-        u.id = #{id}
-    </select>
 </mapper>

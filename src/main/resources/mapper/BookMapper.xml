@@ -12,13 +12,13 @@
     </select>
 
     <!--  借阅更新图书数量  -->
-    <update id="borrowBook" >
-        update book set number = number -1 where number > 0 and bname = #{bname}
+    <update id="borrowBook">
+        update book set number = number -1 where bname = #{bname}
     </update>
 
     <!--  添加借阅信息  -->
-    <insert id="addBrInfo" >
-        insert into borrow(uid,bid,btime) values(#{uid},#{bid},#{btime})
+    <insert id="addBrInfo">
+        insert into borrow(uid,bid,btime) values(#{param1},#{param2},#{param3})
     </insert>
 
     <!--  模糊查询图书  -->
@@ -46,4 +46,53 @@
     <select id="getBorrowInfo" resultType="com.lyx.model.Borrow">
         select br.* from book b,borrow br where b.bid = br.bid and b.bname = #{bname} and rtime is null
     </select>
+
+    <!--查询用户是否借过这本书且还未归还-->
+    <select id="isBorrow" resultType="com.lyx.model.Borrow">
+        select w.brid from borrow w,book k
+        where w.bid = k.bid and k.bname = #{param1} and w.rtime is null and w.uid = #{param2}
+    </select>
+
+    <!--  查询借阅未还的所有图书信息及借阅时间  -->
+    <resultMap id="findBookWithBorrowResultMap" type="BookOv">
+        <!-- 封装查询主体Book: -->
+        <id column="bid" property="bid"/>
+        <result column="bname" property="bname"/>
+        <result column="author" property="author"/>
+        <result column="price" property="price"/>
+        <!-- 一对一映射,需要特殊标签 association-->
+        <!-- property="borrow" 是BookVO类中的属性,javaType是Borrow属性的类型 -->
+        <association property="borrow" javaType="com.lyx.model.Borrow">
+            <id column="brid" property="brid"/>
+            <!-- 下面正常的列和属性 一一映射 -->
+            <result column="btime" property="btime"/>
+            <result column="rtime" property="rtime"/>
+        </association>
+    </resultMap>
+
+    <!-- 多表联查,直接返回resultType无法封装关联的那个对象,就需要使用
+     resultMap手动映射 -->
+    <select id="findBookWithBorrowByUid" resultMap="findBookWithBorrowResultMap">
+        select b.bid,b.bname,b.author,b.price,r.btime from book b,borrow r
+        where b.bid = r.bid and uid = #{uid} and rtime is null
+        order by r.btime desc
+    </select>
+
+    <!--  查询当前用户所有借阅记录  -->
+    <select id="getBorrwInfosByUid" resultMap="findBookWithBorrowResultMap">
+        select b.bname,b.author,b.price,r.btime,r.rtime from book b,borrow r
+        where b.bid = r .bid and uid = #{uid}
+    </select>
+
+    <!--  归还时间更新  -->
+    <update id="updateInfo">
+        update borrow set rtime = #{param1} where bid = #{param2}
+    </update>
+
+    <!--  图书数量更新  -->
+    <update id="returnBook">
+        update book set number = number + 1 where bid = #{bid}
+    </update>
+
+
 </mapper>

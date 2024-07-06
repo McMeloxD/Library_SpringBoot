@@ -21,7 +21,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User login(User user) {
         User user1 = userMapper.login(user);
-        System.out.println(user1);
         return user1;
     }
 

@@ -51,43 +51,54 @@
         <th>价格</th>
         <th>出版社</th>
         <th>作者</th>
+        <th>剩余数量</th>
         <th>借阅</th>
     </tr>
     </thead>
     <tbody id="bookList">
-    <!--  由addbook传来数据  -->
+    <!--  由后端传来数据  -->
     </tbody>
 </table>
 <button type="button" onclick="btn()">返回</button>
 
 <script>
 
-        $("#btn").click(function() {
-            //获取id
-            var row = $(this).closest("tr");
-            var bid = row.find("td:eq(0)").text();
-            console.log(bid)
+    function borrow(e) {
+        //通过点击按钮，获取当前this对象的第一个祖先元素也就是tr这一行
+        //closest() 方法获得匹配选择器的第一个祖先元素
+        var row = $(e).closest("tr");
+        //获取这一行第一列和第二列的值
+        var bid = row.find("td:eq(0)").text();
+        var bname = row.find("td:eq(1)").text();
+        var number = row.find("td:eq(5)").text();
+        if (number > 0){
             $.ajax({
                 type: "GET",
                 url: "/borrowBook",
                 data: {
-                    "bname": $("#bname").val(),
-                    "uid": JSON.parse(sessionStorage.getItem("user")).uname,
-                    "bid": bid,
+                    "bname": bname,
+                    "uid": JSON.parse(sessionStorage.getItem("user")).uid,
+                    "bid": bid
                 },
                 dataType: "JSON",
                 success: function (bookresult) {
                     if (bookresult.code == 20000) {
                         alert(bookresult.msg);
+                        // 刷新页面
+                        location.reload();
                     } else {
                         alert(bookresult.msg);
                     }
                 }
             });
-        })
+        }else {
+            alert(bname+"这本书已经被借完了呢，换一本吧~");
+        }
+
+    }
 
     <!--页面加载事件 -->
-    $(function() {
+    $(function () {
         //获取图书列表
         $.ajax({
             type: "GET",
@@ -107,7 +118,8 @@
                             <td>${books.price}</td>
                             <td>${books.press}</td>
                             <td>${books.author}</td>
-                            <td><button type="submit" id="btn">借阅</button></td>
+                            <td>${books.number}</td>
+                            <td><button type="submit" onclick="borrow(this)">借阅</button></td>
                     `;
                         tbody.appendChild(row);
                     })

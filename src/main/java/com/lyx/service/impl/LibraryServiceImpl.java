@@ -3,13 +3,13 @@ package com.lyx.service.impl;
 
 import com.lyx.dao.LibraryDao;
 import com.lyx.dao.impl.LibraryDaoImpl;
+import com.lyx.model.Borrow;
 import com.lyx.service.LibraryService;
 import com.lyx.model.Book;
-import com.lyx.model.BorrowInfo;
-import com.lyx.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,11 +27,6 @@ public class LibraryServiceImpl implements LibraryService {
     @Autowired
     private LibraryDaoImpl libraryDaoImpl;
 
-    @Override
-    public List<BorrowInfo> borrowInfo(User user) {
-        List<BorrowInfo> infos = libraryDao.borrowInfo(user);
-        return infos;
-    }
 
     @Override
     public int addBook(Book book) {
@@ -49,8 +44,19 @@ public class LibraryServiceImpl implements LibraryService {
         return libraryDao.getBookByText("%"+bname+"%");
     }
 
+
     @Override
     public int borrowBook(String bname,int uid,int bid) {
         return libraryDao.borrowBook(bname,uid,bid);
+    }
+
+    @Override
+    public int returnBook( int bid) {
+        return libraryDao.returnBook(bid);
+    }
+
+    @Override
+    public List<Borrow> getBorrwInfosByUid(int uid) {
+        return libraryDao.getBorrwInfosByUid(uid);
     }
 }
