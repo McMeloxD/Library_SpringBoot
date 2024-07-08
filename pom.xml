@@ -45,6 +45,14 @@
             <version>5.1.47</version>
         </dependency>
 
+        <!-- pageHelper依赖-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <!-- 不能使用1.2.6版本,因为版本太低与springboot高版本不兼容,导致启动项目报错 -->
+            <version>1.4.2</version>
+        </dependency>
+
         <!-- druid 数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>

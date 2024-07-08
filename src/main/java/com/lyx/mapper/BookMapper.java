@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Liyuexian
  * @date 2024/7/2
- * @desc
+ * @desc 有待更新新的注解方式和分页功能,尽情期待
  */
 public interface BookMapper {
     //添加图书
