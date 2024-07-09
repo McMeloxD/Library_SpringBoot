@@ -3,6 +3,7 @@ package com.lyx.service.impl;
 
 import com.lyx.dao.LibraryDao;
 import com.lyx.dao.impl.LibraryDaoImpl;
+import com.lyx.model.BookOv;
 import com.lyx.model.Borrow;
 import com.lyx.service.LibraryService;
 import com.lyx.model.Book;
@@ -56,7 +57,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public List<Borrow> getBorrwInfosByUid(int uid) {
+    public List<BookOv> getBorrwInfosByUid(int uid) {
         return libraryDao.getBorrwInfosByUid(uid);
     }
 }

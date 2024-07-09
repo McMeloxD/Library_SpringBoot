@@ -48,10 +48,10 @@ public class LibraryController {
     public R delBook(String bname) {
         System.out.println(bname);
         // 先判断是否由这本书
-        Book book = bookMapper.getBookByName(bname);
-        if (book == null) {
-            return new R(50000, "没有这本书哦~", null);
-        }
+        // Book book = bookMapper.getBookByName(bname);
+        // if (book == null) {
+        //     return new R(50000, "没有这本书哦~", null);
+        // }
         // 再判断这本书是否有人正在借阅
         Borrow borrow = bookMapper.getBorrowInfo(bname);
         if (borrow == null) {
@@ -96,7 +96,7 @@ public class LibraryController {
 
     @GetMapping("/allInfo")
     public R allInfo(int uid) {
-        List<Borrow> borrows = libraryService.getBorrwInfosByUid(uid);
+        List<BookOv> borrows = libraryService.getBorrwInfosByUid(uid);
         System.out.println(borrows);
         if (borrows != null) {
             return new R(20000,"获取借阅d记录成功",borrows);

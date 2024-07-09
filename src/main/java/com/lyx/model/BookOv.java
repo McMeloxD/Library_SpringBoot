@@ -1,6 +1,8 @@
 package com.lyx.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * --- Be Humble and Hungry ---
@@ -11,14 +13,9 @@ import lombok.Data;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookOv extends Book{
     private Borrow borrow;
 
-    public Borrow getBorrow() {
-        return borrow;
-    }
-
-    public void setBorrow(Borrow borrow) {
-        this.borrow = borrow;
-    }
 }

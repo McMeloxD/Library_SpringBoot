@@ -3,12 +3,11 @@ package com.lyx.dao.impl;
 import com.lyx.dao.LibraryDao;
 import com.lyx.mapper.BookMapper;
 import com.lyx.model.Book;
-import com.lyx.model.Borrow;
+import com.lyx.model.BookOv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -63,7 +62,7 @@ public class LibraryDaoImpl implements LibraryDao {
     }
 
     @Override
-    public List<Borrow> getBorrwInfosByUid(int uid) {
+    public List<BookOv> getBorrwInfosByUid(int uid) {
         return bookMapper.getBorrwInfosByUid(uid);
     }
 

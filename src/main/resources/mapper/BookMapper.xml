@@ -6,52 +6,52 @@
 <!-- 用来关联,映射文件(XML)和接口文件,即接口的类路径 -->
 <mapper namespace="com.lyx.mapper.BookMapper">
 
-    <!--  查询一个图书  -->
-    <select id="getBookByName" resultType="com.lyx.model.Book">
-        select * from book where bname = #{bname}
-    </select>
+<!--    &lt;!&ndash;  查询一个图书  &ndash;&gt;-->
+<!--    <select id="getBookByName" resultType="com.lyx.model.Book">-->
+<!--        select * from book where bname = #{bname}-->
+<!--    </select>-->
 
-    <!--  借阅更新图书数量  -->
-    <update id="borrowBook">
-        update book set number = number -1 where bname = #{bname}
-    </update>
+<!--    &lt;!&ndash;  借阅更新图书数量  &ndash;&gt;-->
+<!--    <update id="borrowBook">-->
+<!--        update book set number = number -1 where bname = #{bname}-->
+<!--    </update>-->
 
-    <!--  添加借阅信息  -->
-    <insert id="addBrInfo">
-        insert into borrow(uid,bid,btime) values(#{param1},#{param2},#{param3})
-    </insert>
+<!--    &lt;!&ndash;  添加借阅信息  &ndash;&gt;-->
+<!--    <insert id="addBrInfo">-->
+<!--        insert into borrow(uid,bid,btime) values(#{param1},#{param2},#{param3})-->
+<!--    </insert>-->
 
-    <!--  模糊查询图书  -->
-    <select id="getBookByText" resultType="com.lyx.model.Book">
-        select * from book where bname like #{bname}
-    </select>
+<!--    &lt;!&ndash;  模糊查询图书  &ndash;&gt;-->
+<!--    <select id="getBookByText" resultType="com.lyx.model.Book">-->
+<!--        select * from book where bname like #{bname}-->
+<!--    </select>-->
 
-    <!--  删除一个图书  -->
-    <delete id="delBook">
-        delete from book where bname = #{bname}
-    </delete>
+<!--    &lt;!&ndash;  删除一个图书  &ndash;&gt;-->
+<!--    <delete id="delBook">-->
+<!--        delete from book where bname = #{bname}-->
+<!--    </delete>-->
 
-    <!--  查询全部图书  -->
-    <select id="getAllBook" resultType="com.lyx.model.Book">
-        select * from book
-    </select>
+<!--    &lt;!&ndash;  查询全部图书  &ndash;&gt;-->
+<!--    <select id="getAllBook" resultType="com.lyx.model.Book">-->
+<!--        select * from book-->
+<!--    </select>-->
 
-    <!-- 添加图书 -->
-    <insert id="addBook">
-        insert into book(bname,price,press,author,number) values(#{bname},#{price},#{press},#{author},#{number})
-    </insert>
+<!--    &lt;!&ndash; 添加图书 &ndash;&gt;-->
+<!--    <insert id="addBook">-->
+<!--        insert into book(bname,price,press,author,number) values(#{bname},#{price},#{press},#{author},#{number})-->
+<!--    </insert>-->
 
-    <!--  查询所有借阅信息  -->
-    <!--  查询一本书是否有人正在借阅  -->
-    <select id="getBorrowInfo" resultType="com.lyx.model.Borrow">
-        select br.* from book b,borrow br where b.bid = br.bid and b.bname = #{bname} and rtime is null
-    </select>
+<!--    &lt;!&ndash;  查询所有借阅信息  &ndash;&gt;-->
+<!--    &lt;!&ndash;  查询一本书是否有人正在借阅  &ndash;&gt;-->
+<!--    <select id="getBorrowInfo" resultType="com.lyx.model.Borrow">-->
+<!--        select br.* from book b,borrow br where b.bid = br.bid and b.bname = #{bname} and rtime is null-->
+<!--    </select>-->
 
-    <!--查询用户是否借过这本书且还未归还-->
-    <select id="isBorrow" resultType="com.lyx.model.Borrow">
-        select w.brid from borrow w,book k
-        where w.bid = k.bid and k.bname = #{param1} and w.rtime is null and w.uid = #{param2}
-    </select>
+<!--    &lt;!&ndash;查询用户是否借过这本书且还未归还&ndash;&gt;-->
+<!--    <select id="isBorrow" resultType="com.lyx.model.Borrow">-->
+<!--        select w.brid from borrow w,book k-->
+<!--        where w.bid = k.bid and k.bname = #{param1} and w.rtime is null and w.uid = #{param2}-->
+<!--    </select>-->
 
     <!--  查询借阅未还的所有图书信息及借阅时间  -->
     <resultMap id="findBookWithBorrowResultMap" type="BookOv">
@@ -84,15 +84,15 @@
         where b.bid = r .bid and uid = #{uid}
     </select>
 
-    <!--  归还时间更新  -->
-    <update id="updateInfo">
-        update borrow set rtime = #{param1} where bid = #{param2}
-    </update>
+<!--    &lt;!&ndash;  归还时间更新  &ndash;&gt;-->
+<!--    <update id="updateInfo">-->
+<!--        update borrow set rtime = #{param1} where bid = #{param2}-->
+<!--    </update>-->
 
-    <!--  图书数量更新  -->
-    <update id="returnBook">
-        update book set number = number + 1 where bid = #{bid}
-    </update>
+<!--    &lt;!&ndash;  图书数量更新  &ndash;&gt;-->
+<!--    <update id="returnBook">-->
+<!--        update book set number = number + 1 where bid = #{bid}-->
+<!--    </update>-->
 
 
 </mapper>

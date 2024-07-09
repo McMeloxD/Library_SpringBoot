@@ -1,6 +1,7 @@
 package com.lyx.service;
 
 import com.lyx.model.Book;
+import com.lyx.model.BookOv;
 import com.lyx.model.Borrow;
 
 
@@ -19,6 +20,6 @@ public interface LibraryService {
     List<Book> getBookByText(String bname);
     int borrowBook(String bname,int uid,int bid);
     int returnBook(int bid);
-    List<Borrow> getBorrwInfosByUid(int uid);
+    List<BookOv> getBorrwInfosByUid(int uid);
 
 }

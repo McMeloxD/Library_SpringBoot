@@ -1,6 +1,7 @@
 package com.lyx.dao;
 
 import com.lyx.model.Book;
+import com.lyx.model.BookOv;
 import com.lyx.model.Borrow;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface LibraryDao {
     List<Book> getBookByText(String bname);
     int borrowBook(String bname,int uid,int bid);
     int returnBook(int bid);
-    List<Borrow> getBorrwInfosByUid(int uid);
+    List<BookOv> getBorrwInfosByUid(int uid);
 }
