@@ -77,7 +77,7 @@
         console.log(bname)
         $.ajax({
             type: "GET",
-            url: "/addBook",
+            url: "/api/book/addBook",
             data: {
                 "bname": bname,
                 "price": price,
@@ -104,7 +104,7 @@
         //获取图书列表
         $.ajax({
             type: "GET",
-            url: "/bookList",
+            url: "api/book/bookList",
             data: {},
             dataType: "JSON",
             success: function (bookresult) {

@@ -71,7 +71,7 @@
     function add() {
         $.ajax({
             type: "GET",
-            url: "/addBook",
+            url: "api/book/addBook",
             data: {
                 "bname": $("#bname").val(),
                 "price": $("#price").val(),

@@ -63,7 +63,7 @@
     function find() {
         $.ajax({
             type: "GET",
-            url: "/findBook",
+            url: "api/book/findBook",
             data: {
                 "bname": $("#bname").val(),
             },

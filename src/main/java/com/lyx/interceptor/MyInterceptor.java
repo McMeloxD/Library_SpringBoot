@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * --- Be Humble and Hungry ---
@@ -29,8 +30,15 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
-
-        return true;
+        HttpSession session = request.getSession();
+        System.out.println(session.getAttribute("user"));
+        if (session.getAttribute("user") != null) {
+            //如果已登录那就放行
+            return true;
+        }
+        //未登录跳转
+        response.sendRedirect("/index.html");
+        return false;
     }
 
     /**

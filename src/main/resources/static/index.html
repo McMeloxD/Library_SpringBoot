@@ -115,7 +115,7 @@
         // 后续可以通过Ajax提交到服务器进行验证
         $.ajax({
             type: "POST",
-            url: "/login",
+            url: "/api/user/login",
             data: {
                 "uname": username,
                 "password": password

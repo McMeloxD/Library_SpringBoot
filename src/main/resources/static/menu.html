@@ -52,7 +52,17 @@
     //如果点击退出登录 直接在前端清空sessionStorage的内容，并且跳转登录页面
     $("#tc").click(()=>
     {
+        //清空session
         sessionStorage.clear();
+        $.ajax({
+            type: "GET",
+            url: "/api/user/exit",
+            data: {
+            },
+            dataType: "JSON",
+            success: function(data) {
+            }
+        });
         location.assign("index.html");
     })
 </script>

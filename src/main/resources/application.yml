@@ -7,6 +7,10 @@ spring:
     password: 666888
     # 数据库连接池
     type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+      pathmatch: # Springfox使用的路径匹配是基于AntPathMatcher的
+        # 所以需要配置此参数
+        matching-strategy: ant_path_matcher
 # mybatis配置
 mybatis:
   # 扫描映射文件
@@ -19,4 +23,4 @@ mybatis:
 # 打印执行过程的sql信息
 logging:
   level:
-    com.qf.mapper: DEBUG 
+    com.qf.mapper: DEBUG

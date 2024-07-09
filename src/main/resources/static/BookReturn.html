@@ -63,7 +63,7 @@
 <button type="button" onclick="btn()">返回</button>
 
 <script>
-
+    //还书操作
     function returnBook(e) {
         //通过点击按钮，获取当前this对象的第一个祖先元素也就是tr这一行
         //closest() 方法获得匹配选择器的第一个祖先元素
@@ -72,7 +72,7 @@
         var bid = row.find("td:eq(0)").text();
         $.ajax({
             type: "GET",
-            url: "/returnBook",
+            url: "api/book/returnBook",
             data: {
                 "bid": bid
             },
@@ -90,12 +90,12 @@
     }
 
 
-    <!--页面加载事件 -->
+    <!--页面加载事件-该用户未归还的图书列表 -->
     $(function () {
         //获取图书列表
         $.ajax({
             type: "GET",
-            url: "/bookNotReturnInfo",
+            url: "/api/book/bookNotReturnInfo",
             data: {
                 "uid": JSON.parse(sessionStorage.getItem("user")).uid
             },

@@ -74,7 +74,7 @@
         if (number > 0){
             $.ajax({
                 type: "GET",
-                url: "/borrowBook",
+                url: "/api/book/borrowBook",
                 data: {
                     "bname": bname,
                     "uid": JSON.parse(sessionStorage.getItem("user")).uid,
@@ -102,7 +102,7 @@
         //获取图书列表
         $.ajax({
             type: "GET",
-            url: "/bookList",
+            url: "api/book/bookList",
             data: {},
             dataType: "JSON",
             success: function (bookresult) {

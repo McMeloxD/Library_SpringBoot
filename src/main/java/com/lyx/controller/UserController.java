@@ -4,11 +4,12 @@ import com.lyx.mapper.UserMapper;
 import com.lyx.model.User;
 import com.lyx.service.UserService;
 import com.lyx.util.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpSession;
  * @desc
  */
 @RestController
+@RequestMapping("/api/user/")
+@Api(tags = "用户接口")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -28,6 +31,7 @@ public class UserController {
     private UserMapper userMapper;
 
     @PostMapping ("/login")
+    @ApiOperation(value = "用户登录")
     public R login(String uname, String password, HttpSession session){
         //先判断有没有这个用户
         User user = userMapper.findUsername(uname);
@@ -35,6 +39,8 @@ public class UserController {
             //存在就执行登录
             User user1 = userService.login(new User(uname, password));
             if (user1 != null){
+                //设置一个session
+                session.setAttribute("user", user1);
                 return new R(20000,"登陆成功",user);
             }else return new R(40000,"账号或密码错误！",null);
         }else return new R(50000,"该用户不存在请注册！",null);
@@ -42,6 +48,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
+    @ApiOperation(value = "用户注册")
     public R register(String uname, String password){
         User user = userService.register(uname);
         if (user == null){
@@ -56,4 +63,9 @@ public class UserController {
         }
     }
 
+    @GetMapping("/exit")
+    public void exit(HttpSession session){
+        System.out.println("清楚session");
+        session.removeAttribute("user");
+    }
 }

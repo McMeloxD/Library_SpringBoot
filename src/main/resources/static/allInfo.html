@@ -67,7 +67,7 @@
         //获取图书列表
         $.ajax({
             type: "GET",
-            url: "/allInfo",
+            url: "/api/book/allInfo",
             data: {
                 "uid": JSON.parse(sessionStorage.getItem("user")).uid
             },
