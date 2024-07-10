@@ -31,7 +31,6 @@ public class MyInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        System.out.println(session.getAttribute("user"));
         if (session.getAttribute("user") != null) {
             //如果已登录那就放行
             return true;

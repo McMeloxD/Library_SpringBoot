@@ -37,6 +37,6 @@ public class MyExceptionHandler {
     public String handlerException(Exception ex){
         //注意这儿要自己new一个ModelAndView对象，不能直接在方法参数BusinessException e后写ModelAndView mv
         System.out.println("出错啦!" + ex.getMessage());
-        return "404.html";
+        return "forward:/404.html";
     }
 }

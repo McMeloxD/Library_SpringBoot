@@ -6,12 +6,13 @@ import com.lyx.service.UserService;
 import com.lyx.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpSession;
 
 /**
@@ -30,6 +31,9 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
+    // 日志插件
+    private Logger logger = LogManager.getLogger(UserController.class);
+
     @PostMapping ("/login")
     @ApiOperation(value = "用户登录")
     public R login(String uname, String password, HttpSession session){
@@ -41,6 +45,7 @@ public class UserController {
             if (user1 != null){
                 //设置一个session
                 session.setAttribute("user", user1);
+                logger.info("用户登录：{}", uname);
                 return new R(20000,"登陆成功",user);
             }else return new R(40000,"账号或密码错误！",null);
         }else return new R(50000,"该用户不存在请注册！",null);
@@ -55,6 +60,7 @@ public class UserController {
             //如果库里没有就创建
             int n = userService.addUser(new User(uname, password));
             if (n > 0){
+                logger.info("用户注册：{}", uname);
                 return new R(20000,"注册成功，请登录~",null);
             }else return new R(40000,"注册失败，请重试~",null);
         }else {
@@ -65,7 +71,6 @@ public class UserController {
 
     @GetMapping("/exit")
     public void exit(HttpSession session){
-        System.out.println("清楚session");
         session.removeAttribute("user");
     }
 }

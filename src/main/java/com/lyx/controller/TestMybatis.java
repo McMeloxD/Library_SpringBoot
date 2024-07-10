@@ -93,6 +93,12 @@ public class TestMybatis {
         return "ok.html";
     }
 
+    @GetMapping("/sy404")
+    public R ceshi404() {
+        System.out.println(5/0);
+        return R.ok();
+    }
+
     // @RequestMapping(value = "/req2",method = RequestMethod.GET)
     @GetMapping("/req2")
     public String test2() {

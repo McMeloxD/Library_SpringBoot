@@ -23,7 +23,7 @@ public class MyConfig implements WebMvcConfigurer {
                 // addPathPatterns 定义拦截的路径
                 // excludePathPatterns 定义放行的路径
                 .addPathPatterns("/**")    // 拦截所有 url
-                .excludePathPatterns("/api/user/login","/api/user/register","/api/book/ceshi404","/index.html","/register.html"
+                .excludePathPatterns("/api/user/login","/api/user/register","/sy404","/index.html","/register.html"
                         ,"/404.html","/**/*.js","/**/*.css","/**/*.png","/**/*.jpg"); //不拦截登录注册接口
     }
 }

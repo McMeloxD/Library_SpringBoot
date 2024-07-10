@@ -1,0 +1,18 @@
+2024-07-10 11:05:43.726 [restartedMain] INFO  com.lyx.DemoSpringbootApplication - Starting DemoSpringbootApplication using Java 1.8.0_181 on McMeloxD-01 with PID 10372 (D:\IdeaProjects\Library_springboot\target\classes started by McMeloxD in D:\IdeaProjects\Library_springboot)
+2024-07-10 11:05:43.734 [restartedMain] INFO  com.lyx.DemoSpringbootApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-10 11:05:45.246 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - An older version [1.2.21] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.30]
+2024-07-10 11:05:45.246 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.21] using APR version [1.6.5].
+2024-07-10 11:05:45.249 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [false].
+2024-07-10 11:05:45.249 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2024-07-10 11:05:45.253 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1a  20 Nov 2018]
+2024-07-10 11:05:45.261 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-10 11:05:45.262 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-10 11:05:45.262 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2024-07-10 11:05:45.395 [restartedMain] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-10 11:05:45.591 [restartedMain] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure - Init DruidDataSource
+2024-07-10 11:05:45.697 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2024-07-10 11:05:46.458 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-10 11:05:46.723 [restartedMain] INFO  com.lyx.DemoSpringbootApplication - Started DemoSpringbootApplication in 3.393 seconds (JVM running for 4.918)
+2024-07-10 11:05:47.150 [http-nio-8080-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-10 11:05:56.273 [http-nio-8080-exec-6] INFO  com.lyx.controller.UserController - 用户登录：wenjie
+2024-07-10 11:06:05.957 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
